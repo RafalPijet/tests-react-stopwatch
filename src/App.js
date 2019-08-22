@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import OperatedButton from './components/OperatedButton';
 import StoperDisplay from './components/StoperDisplay';
+import ScoreList from './components/ScoreList';
 
 class App extends React.Component {
     constructor() {
@@ -49,7 +50,6 @@ class App extends React.Component {
     }
 
     start() {
-        console.log("go");
         this.setState({
             running: true
         });
@@ -81,26 +81,36 @@ class App extends React.Component {
                 minutes: 0
             }
         })
-    }
+    };
 
-    addScore() {
+    addScore = () => {
+        let result = Array.from(this.state.timeList);
+        result.push(this.format(this.state.time));
+        this.setState({
+            timeList: result
+        })
+    };
 
-    }
-
-    clearScore() {
-
-    }
+    clearScore = () => {
+        this.setState({
+            timeList: []
+        })
+    };
 
     render() {
         return (
-            <div className="App">
-                <OperatedButton name={"Start"} onClick={this.start}/>
-                <OperatedButton name={"Stop"} onClick={this.stop.bind(this)}/>
-                <OperatedButton name={"Reset"} onClick={this.reset}/>
-                <OperatedButton name={"Add score"}/>
-                <OperatedButton name={"Clear score"}/>
-                <StoperDisplay output={this.format(this.state.time)}/>
+            <div>
+                <div className="App">
+                    <OperatedButton name={"Start"} onClick={this.start}/>
+                    <OperatedButton name={"Stop"} onClick={this.stop.bind(this)}/>
+                    <OperatedButton name={"Reset"} onClick={this.reset}/>
+                    <OperatedButton name={"Add score"} onClick={this.addScore}/>
+                    <OperatedButton name={"Clear score"} onClick={this.clearScore}/>
+                    <StoperDisplay output={this.format(this.state.time)}/>
+                </div>
+                <ScoreList scoreList={this.state.timeList}/>
             </div>
+
         )
     }
 }
