@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const OperatedButton = props => (
     <div>
-        <button onClick={() => props.onClick}>{props.name}</button>
+        <button onClick={() => props.onClick()}>{props.name}</button>
     </div>
 );
 

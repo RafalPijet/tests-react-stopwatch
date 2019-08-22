@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const StoperDisplay = props => (
-  <h1>{props.output}</h1>  
+  <h1 className="stopwatch">{props.output}</h1>  
 );
 
 StoperDisplay.propTypes = {
