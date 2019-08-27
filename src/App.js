@@ -84,11 +84,9 @@ class App extends React.Component {
     };
 
     addScore = () => {
-        let result = Array.from(this.state.timeList);
-        result.push(this.format(this.state.time));
         this.setState({
-            timeList: result
-        })
+            timeList: [this.format(this.state.time), ...this.state.timeList]
+        });
     };
 
     clearScore = () => {
